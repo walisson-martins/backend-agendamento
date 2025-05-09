@@ -1,6 +1,7 @@
 package com.api.agendamento.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 
@@ -11,6 +12,7 @@ public class ApointmentDTO implements Serializable {
 
     private Long idPaciente;
     private Long idMedico;
+    private LocalDateTime dataHora;
     private Boolean cancelada;
 
     public ApointmentDTO() {
