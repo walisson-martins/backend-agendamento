@@ -14,9 +14,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Apointment implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,28 +28,21 @@ public class Apointment implements Serializable {
     private Long id;
 
     @NonNull
-    @Column(name = "Identificador Paciente", nullable = false)
+    @Column(name = "Id_paciente")
     private Long idPaciente;
 
     @NonNull
-    @Column(name = "Identificador Medico", nullable = false)
+    @Column(name = "Id_medico")
     private Long idMedico;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @NonNull
-    @Column(name = "Data e Hora", nullable = false)
+    @Column(name = "Data_hora")
     private LocalDateTime dataHora;
 
     @NonNull
-    @Column(name = "Cancelado", nullable = false)
+    @Column(name = "Status")
     private Boolean cancelada;
-
-    public Apointment(Long idPaciente, Long idMedico, LocalDateTime dataHora, Boolean cancelada) {
-        this.idPaciente = idPaciente;
-        this.idMedico = idMedico;
-        this.dataHora = dataHora;
-        this.cancelada = cancelada;
-    }
 
 }

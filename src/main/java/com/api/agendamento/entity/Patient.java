@@ -2,16 +2,18 @@ package com.api.agendamento.entity;
 
 import java.io.Serializable;
 
-import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Patient implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,33 +22,24 @@ public class Patient implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
+    @NotNull(message = "Nome não pode ser nulo")
     @Column(name = "Nome", nullable = false)
-    private Long nome;
+    private String nome;
 
-    @NonNull
-    @Column(name = "CPF", unique = true)
+    @NotNull(message = "CPF não pode ser nulo")
+    @Column(name = "CPF", unique = true, nullable = false)
     private String cpf;
 
-    @NonNull
+    @NotNull(message = "Email não pode ser nulo")
     @Column(name = "Email", nullable = false)
     private String email;
 
-    @NonNull
+    @NotNull(message = "Telefone não pode ser nulo")
     @Column(name = "Telefone", nullable = false)
     private String telefone;
 
-    @NonNull
+    @NotNull(message = "Ativo não pode ser nulo")
     @Column(name = "Ativo", nullable = false)
     private Boolean ativo;
-
-    public Patient(Long nome, String cpf, String email, String telefone, Boolean ativo) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefone = telefone;
-        this.ativo = ativo;
-
-    }
 
 }

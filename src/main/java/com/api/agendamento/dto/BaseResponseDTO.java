@@ -1,8 +1,10 @@
 package com.api.agendamento.dto;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 public class BaseResponseDTO {
 
     private String mensagem;

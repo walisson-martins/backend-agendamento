@@ -6,14 +6,18 @@ import com.api.agendamento.enums.EnumSpecialty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import lombok.NonNull;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Doctor implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,19 +26,20 @@ public class Doctor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NonNull
-    @Column(name = "Nome", nullable = false)
+    @NotNull(message = "Nome não pode ser nulo")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @NonNull
-    @Column(name = "Especialidade", nullable = false)
+    @NotNull(message = "Especialidades não pode ser nulo")
+    @Column(name = "especialidade", nullable = false)
+    @Enumerated(EnumType.STRING)
     private EnumSpecialty enumEspecialidade;
 
-    @NonNull
+    @NotNull(message = "CRM não pode ser nulo")
     @Column(name = "CRM", nullable = false, unique = true)
     private String crm;
 
-    @NonNull
+    @NotNull(message = "Ativo não pode ser nulo")
     @Column(name = "Ativo", nullable = false)
     private Boolean ativo;
 

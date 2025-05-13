@@ -13,14 +13,20 @@ public class PatientService {
     @Autowired
     private PatientRepository patientRepository;
 
-    public String salvar(PatientDTO PatientDTO) {
-        // PatientRepository.save(PatientDTO);
+    public String salvar(Patient patient) {
+        patientRepository.save(patient);
 
-        return "Consulta realizada com sucesso!";
+        return "Informações do Paciente foram salvas com sucesso!";
     }
 
     public Patient fromDto(PatientDTO patientDTO) {
-        return new Patient(patientDTO.getNome(), patientDTO.getCpf(),
-                patientDTO.getEmail(), patientDTO.getTelefone(), patientDTO.getAtivo());
+        Patient patient = new Patient();
+        patient.setNome(patientDTO.getNome());
+        patient.setCpf(patientDTO.getCpf());
+        patient.setEmail(patientDTO.getEmail());
+        patient.setTelefone(patientDTO.getTelefone());
+        patient.setAtivo(patientDTO.getAtivo());
+        return patient;
     }
+
 }
