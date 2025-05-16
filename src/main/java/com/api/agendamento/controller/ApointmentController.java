@@ -47,11 +47,11 @@ public class ApointmentController {
                 .map(obj -> {
                     ApointmentDTO dto = new ApointmentDTO();
                     dto.setIdPaciente(obj.getIdPaciente());
-                    dto.setIdMedico(obj.getIdMedico());
+                    dto.setIdMedico(obj.getDoctor().getId());
                     dto.setDataHora(obj.getDataHora());
                     dto.setCancelada(obj.getCancelada());
                     return dto;
-                }).collect(Collectors.toUnmodifiableList());
+                }).collect(Collectors.toList());
 
         return ResponseEntity.ok().body(apointmentDTO);
     }

@@ -1,6 +1,6 @@
 package com.api.agendamento.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +41,7 @@ public class DoctorController {
     @GetMapping(value = "/{id}/horarios-disponiveis")
     @Operation(summary = "Buscar horários disponíves no agendamento", description = "Busca a lista de horários disponíveis dos doutores")
     public ResponseEntity<BaseResponseDTO> buscaHourDoctor(@PathVariable Long id) {
-        Optional<Doctor> doctor = doctorService.findById(id);
+        List<DoctorDTO> doctor = doctorService.findDoctorAppointments(id);
 
         return ResponseEntity.ok().body(new BaseResponseDTO("Horários disponíveis", doctor));
     }

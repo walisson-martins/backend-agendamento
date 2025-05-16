@@ -1,6 +1,7 @@
 package com.api.agendamento.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import com.api.agendamento.enums.EnumSpecialty;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,5 +22,7 @@ public class DoctorDTO implements Serializable {
 
     private String crm;
     private Boolean ativo = true;
+
+    private LocalDateTime dataHora;
 
 }

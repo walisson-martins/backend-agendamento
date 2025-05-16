@@ -7,5 +7,4 @@ import com.api.agendamento.entity.Doctor;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-
 }

@@ -13,6 +13,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -31,10 +33,6 @@ public class Apointment implements Serializable {
     @Column(name = "Id_paciente")
     private Long idPaciente;
 
-    @NonNull
-    @Column(name = "Id_medico")
-    private Long idMedico;
-
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @NonNull
@@ -44,5 +42,9 @@ public class Apointment implements Serializable {
     @NonNull
     @Column(name = "Status")
     private Boolean cancelada;
+
+    @ManyToOne
+    @JoinColumn(name = "Id_medico", nullable = false)
+    private Doctor doctor;
 
 }

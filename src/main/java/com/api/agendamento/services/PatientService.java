@@ -1,5 +1,8 @@
 package com.api.agendamento.services;
 
+import java.util.Optional;
+
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +18,6 @@ public class PatientService {
 
     public String salvar(Patient patient) {
         patientRepository.save(patient);
-
         return "Informações do Paciente foram salvas com sucesso!";
     }
 
@@ -27,6 +29,20 @@ public class PatientService {
         patient.setTelefone(patientDTO.getTelefone());
         patient.setAtivo(patientDTO.getAtivo());
         return patient;
+    }
+
+    public PatientDTO findById(Long id) {
+        Optional<Patient> obj = patientRepository.findById(id);
+        Patient patient = obj.orElseThrow(() -> new ObjectNotFoundException(1, "Objeto não encontrado"));
+
+        PatientDTO dto = new PatientDTO();
+        dto.setNome(patient.getNome());
+        dto.setCpf(patient.getCpf());
+        dto.setEmail(patient.getEmail());
+        dto.setTelefone(patient.getTelefone());
+        dto.setAtivo(patient.getAtivo());
+
+        return dto;
     }
 
 }
